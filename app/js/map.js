@@ -9,14 +9,14 @@
 		L.esri.basemapLayer('ImageryTransportation').addTo(map);
 
 		//var currentQuery = "Status IN ('Current','S124 Expired/Exercised') and Type='Water Permit'";//SQL statement to limit results
-		var featureUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_EvacuationZones/MapServer/0/';//url of feature service
+		var innundationUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0';//url of feature service
 		var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_EvacuationZones/MapServer">Data from HBRC</a>'
 	//Overlay with an ESRI feature layer showing water take consents, radius 10 for mobile screens so easier to hit with big fingers.
 		//layer variable defined here, but populated with the esri layer after the listners so that the 
 		//styling functions and reset style works (see Leaflet tutorials for info).
 		
 		//var hbconsents; 
-		var evacZones;
+		var innundationZones;
 		
 		
 		//Add attribution for the feature layer
@@ -33,40 +33,28 @@
 			return this._div;
 			};
 		
-		//Create the help panel and add to the map
-		//var help = L.control.sidebar('help', {
-		//  position: 'left'
-		//  });
-			
-		//map.addControl(help);
-		
-		
-		
-		// create an empty layer group to store the results and add it to the map
-		//var results = L.layerGroup().addTo(map);
-		//var searchMark = L.featureGroup().addTo(map);
-
-		
-			
-	//Feature layer listner function
-	//function onEachFeature(feature, layer) {
-	//  layer.on({
-			//mouseover: highlightFeature,
-			//mouseout: resetHighlight,
-	//    click: infoFeature
-	//    });
-	//  }
-	
+		//style function
+		function innundationStyle(feature) {
+			return {
+				//radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
+				stroke: true,
+				color: '#FFFFFF',
+				weight:1,
+				opacity: 0.8,
+				fillColor: '#1e4959',	
+				fillOpacity: 0.8
+				};
+			}
 	
 		
 	//create the feature layer after the event handlers so that the reset styles function works 
 	
-	evacZones = L.esri.featureLayer({
-	//evacZones = L.esri.TiledMapLayer({  
+	innundationZones = L.esri.featureLayer({
+	
 			
-			//url: featureUrl//,
-			url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
-			
+			url: innundationUrl,
+			//url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
+			style: innundationStyle,
 			}).addTo(map);  
 			
 			

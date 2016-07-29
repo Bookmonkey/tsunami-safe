@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Geolocation</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/global.css">
-  </head>
-  <body>
-    <div id="map"></div>
-    <script src="js/map.js">
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOM_Fzkx75lEP5OiW7ZUnHMuP4SghDqxM&callback=initMap">
-    </script>
-  </body>
+	<head>
+		<title>Geolocation</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+			<!-- Load Leaflet from CDN-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css" />
+
+
+	<!-- Esri Leaflet Geocoder not picking up options if use links to cdn-->
+	<!--<link rel="stylesheet" href="lib/esri_leaflet_geocoder/esri-leaflet-geocoder.css"> -->
+	<!--Leaflet locate-->
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
+	<!--[if lt IE 9]>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.ie.css' rel='stylesheet' />
+	<![endif]-->
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' rel='stylesheet' />
+
+
+	<!--Leaflet sidebar-->
+	<!--[if lt IE 9]>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.ie.css' rel='stylesheet' />
+	<![endif]-->
+	
+	<link href='lib/leaflet_sidebar/L.Control.Sidebar.css' rel='stylesheet' />
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	</head>
+	body>
+	
+		<div id="map" class="map" >
+		<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+		</div>
+		<div id="info"></div>
+	</body>
+
+		<!--Leaflet-->
+	<script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
+	<script src="http://cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.6/esri-leaflet.js"></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+	<script src='lib/leaflet_sidebar/L.Control.Sidebar.js'></script>
+	<script type="text/javascript" src="js/map.js"></script>
+
+	<!-- <script src="lib/esri_leaflet_geocoder/esri-leaflet-geocoder.js"></script>--> -->
 </html>

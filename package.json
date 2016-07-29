@@ -1,7 +1,7 @@
 {
-  "name": "Tsunami Safe",
+  "name": "Tsunami-Safe",
   "version": "1.0.0",
-  "description": "Tsunami Safe.",
+  "description": "Tsunami Safe",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

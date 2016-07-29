@@ -38,11 +38,11 @@
 			return {
 				//radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
 				stroke: true,
-				color: '#FFFFFF',
+				color: '#FF0000',
 				weight:1,
 				opacity: 0.8,
-				fillColor: '#1e4959',	
-				fillOpacity: 0.8
+				fillColor: '#FF0000',	
+				fillOpacity: 0.3
 				};
 			}
 	

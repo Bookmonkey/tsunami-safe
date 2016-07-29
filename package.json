@@ -1,7 +1,7 @@
 {
-  "name": "Frupak",
+  "name": "Tsunami Safe",
   "version": "1.0.0",
-  "description": "Frupak Packing Plans.",
+  "description": "Tsunami Safe.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

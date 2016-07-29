@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="">
+	<meta name="keywords" content="Hawke's Bay">
+	<meta name="author" content="">
+	
+	<title>Tsunami</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css" />
+    <!--Leaflet-->
+    <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
+    
+    <!-- Esri Leaflet -->
+     <script src="http://cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.6/esri-leaflet.js"></script>
+    
+    <!-- Esri Leaflet Geocoder not picking up options if use links to cdn-->
+    <!--<link rel="stylesheet" href="lib/esri_leaflet_geocoder/esri-leaflet-geocoder.css">
+    <script src="lib/esri_leaflet_geocoder/esri-leaflet-geocoder.js"></script>-->
+    
+    <!--Leaflet locate-->
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
+	<!--[if lt IE 9]>
+		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.ie.css' rel='stylesheet' />
+	<![endif]-->
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' rel='stylesheet' />
+
+
+	<!--Leaflet sidebar-->
+	<script src='lib/leaflet_sidebar/L.Control.Sidebar.js'></script>
+	<link href='lib/leaflet_sidebar/L.Control.Sidebar.css' rel='stylesheet' />
+<!--[if lt IE 9]>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.ie.css' rel='stylesheet' />
+<![endif]-->
+	<!--link href='lib/font-awesome-4.5.0/css/font-awesome.min.css' rel='stylesheet' /-->
+    
+    
+    <link rel="stylesheet" type="text/css" href="../css/global.css"></link>
+</head>
+
+<body>
+	
+    <div id="map" class="map" >
+    <div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+    </div>
+    <div id="info"></div>
+    <!--div id="help">
+		<h4>Hawke's Bay Well Information</h4>
+		<p>This map shows current wells known about by the <a href="http://www.hbrc.govt.nz/Pages/default.aspx">Hawke's Bay Regional Council</a>.
+		Click on a well (blue dot) and information about that well will be displayed.
+		You can use the search icon to search for places, or wells.
+		The location function will centre the map on your location.</p>
+		<p></p>
+    </div-->
+    
+    <script>
+    //Open a map container and centre in the Hawke's Bay at zoom 14
+		var map = L.map('map').setView([-39.504871, 176.903568], 14);
+
+	//Bring in the basemap
+
+	
+	//Esri basemap and transportation overlay
+		L.esri.basemapLayer('Imagery').addTo(map);
+		L.esri.basemapLayer('ImageryTransportation').addTo(map);
+
+		//var currentQuery = "Status IN ('Current','S124 Expired/Exercised') and Type='Water Permit'";//SQL statement to limit results
+		var featureUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_EvacuationZones/MapServer/0/';//url of feature service
+		var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_EvacuationZones/MapServer">Data from HBRC</a>'
+	//Overlay with an ESRI feature layer showing water take consents, radius 10 for mobile screens so easier to hit with big fingers.
+		//layer variable defined here, but populated with the esri layer after the listners so that the 
+		//styling functions and reset style works (see Leaflet tutorials for info).
+		
+		//var hbconsents; 
+		var evacZones;
+		//var consentSearch;
+		var wellSearch;
+		
+		//Add attribution for the feature layer
+		map.attributionControl.addAttribution(credits);
+
+	//Geocoding and search control
+		//Define the location geocoding service, from esri, limited to New Zealand
+		//var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider({
+		//	countries: ['NZL',],
+		//	categories: ['Address', 'Postal', 'Populated Place', ]
+		//	});
+		
+		//Define the feature search (geocoding service), search consent number and bore number		
+		var evacZones = L.esri.Geocoding.featureLayerProvider({
+			url: featureUrl//,
+			//searchFields: ['WellNumber'], // Search these fields for text matches
+			//label: 'Wells', // Group suggestions under this header
+			//formatSuggestion: function(feature){
+			//	return 'Well ' + feature.properties.WellNumber; // format suggestions like this.
+			//	}
+			});
+
+		
+		
+		
+		//style function
+		function style(feature) {
+			return {
+				//radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
+				stroke: true,
+				color: '#FFFFFF',
+				weight:1,
+				opacity: 0.8,
+				fillColor: '#1e4959',	
+				fillOpacity: 0.8
+				};
+			}
+		
+		
+		//create a loading icon ready to display when content is loading
+		var loading = L.control();
+		
+		loading.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'loadicon');
+			this._div.innerHTML = '<i class="fa fa-spinner fa-2x fa-spin"></i>';
+			return this._div;
+			};
+		
+		//Create the help panel and add to the map
+		var help = L.control.sidebar('help', {
+			position: 'left'
+			});
+			
+		map.addControl(help);
+		
+		//create control for help and position in bottom left
+		var helpIcon = L.Control.extend({
+			options: {position: 'bottomleft'},
+			onAdd: function(map) {
+				var container = L.DomUtil.create('div', 'helpIcon');
+				container.innerHTML = '<i class="fa fa-question fa-2x"></i>';
+				container.onclick = function(){help.toggle();}
+				return container;
+				},
+			});
+		map.addControl(new helpIcon());
+		
+		// create an empty layer group to store the results and add it to the map
+		var results = L.layerGroup().addTo(map);
+		//var searchMark = L.featureGroup().addTo(map);
+
+		
+			
+	//Feature layer listner function
+	function onEachFeature(feature, layer) {
+		layer.on({
+			//mouseover: highlightFeature,
+			//mouseout: resetHighlight,
+			click: infoFeature
+			});
+		}
+	
+	
+		
+	//create the feature layer after the event handlers so that the reset styles function works	
+	
+	evacZones = L.esri.featureLayer({	
+			//url: featureUrl//,
+			url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
+			
+			}).addTo(map);	
+			
+			
+	
+		
+		
+	//Location control and handler
+	lc = L.control.locate({
+		follow: true,
+		icon: 'fa fa-map-marker',
+		keepCurrentZoomLevel: false,
+		strings: {
+			title: "Show me where I am"
+			},
+		locateOptions: {
+			}
+		}).addTo(map);
+		var res = {};
+		
+	
+
+	
+	//Stop following if the user drags the map
+	map.on('startfollowing', function() {
+		map.on('dragstart', lc._stopFollowing, lc);
+	}).on('stopfollowing', function() {
+		map.off('dragstart', lc._stopFollowing, lc);
+	});
+
+
+    </script>
+</body>
+</html>

@@ -76,45 +76,12 @@
 		
 		//var hbconsents; 
 		var evacZones;
-		//var consentSearch;
-		var wellSearch;
+		
 		
 		//Add attribution for the feature layer
 		map.attributionControl.addAttribution(credits);
 
-	//Geocoding and search control
-		//Define the location geocoding service, from esri, limited to New Zealand
-		//var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider({
-		//	countries: ['NZL',],
-		//	categories: ['Address', 'Postal', 'Populated Place', ]
-		//	});
-		
-		//Define the feature search (geocoding service), search consent number and bore number		
-		var evacZones = L.esri.Geocoding.featureLayerProvider({
-			url: featureUrl//,
-			//searchFields: ['WellNumber'], // Search these fields for text matches
-			//label: 'Wells', // Group suggestions under this header
-			//formatSuggestion: function(feature){
-			//	return 'Well ' + feature.properties.WellNumber; // format suggestions like this.
-			//	}
-			});
-
-		
-		
-		
-		//style function
-		function style(feature) {
-			return {
-				//radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
-				stroke: true,
-				color: '#FFFFFF',
-				weight:1,
-				opacity: 0.8,
-				fillColor: '#1e4959',	
-				fillOpacity: 0.8
-				};
-			}
-		
+	
 		
 		//create a loading icon ready to display when content is loading
 		var loading = L.control();
@@ -126,44 +93,36 @@
 			};
 		
 		//Create the help panel and add to the map
-		var help = L.control.sidebar('help', {
-			position: 'left'
-			});
+		//var help = L.control.sidebar('help', {
+		//	position: 'left'
+		//	});
 			
-		map.addControl(help);
+		//map.addControl(help);
 		
-		//create control for help and position in bottom left
-		var helpIcon = L.Control.extend({
-			options: {position: 'bottomleft'},
-			onAdd: function(map) {
-				var container = L.DomUtil.create('div', 'helpIcon');
-				container.innerHTML = '<i class="fa fa-question fa-2x"></i>';
-				container.onclick = function(){help.toggle();}
-				return container;
-				},
-			});
-		map.addControl(new helpIcon());
+		
 		
 		// create an empty layer group to store the results and add it to the map
-		var results = L.layerGroup().addTo(map);
+		//var results = L.layerGroup().addTo(map);
 		//var searchMark = L.featureGroup().addTo(map);
 
 		
 			
 	//Feature layer listner function
-	function onEachFeature(feature, layer) {
-		layer.on({
+	//function onEachFeature(feature, layer) {
+	//	layer.on({
 			//mouseover: highlightFeature,
 			//mouseout: resetHighlight,
-			click: infoFeature
-			});
-		}
+	//		click: infoFeature
+	//		});
+	//	}
 	
 	
 		
 	//create the feature layer after the event handlers so that the reset styles function works	
 	
-	evacZones = L.esri.featureLayer({	
+	evacZones = L.esri.featureLayer({
+	//evacZones = L.esri.TiledMapLayer({	
+			
 			//url: featureUrl//,
 			url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
 			

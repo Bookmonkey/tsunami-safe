@@ -1,0 +1,32 @@
+{
+  "name": "Frupak",
+  "version": "1.0.0",
+  "description": "Frupak Packing Plans.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "frupak",
+    "node"
+  ],
+  "author": "Danni Dickson",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.0",
+    "del": "^2.0.2",
+    "ejs": "~1.0.0",
+    "express": "~4.0.0",
+    "express-session": "~1.0.0",
+    "fs": "0.0.2",
+    "method-override": "~1.0.0",
+    "morgan": "~1.0.0"
+  },
+  "engines": {
+    "node": "0.12.x"
+  }
+}

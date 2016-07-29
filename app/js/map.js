@@ -8,15 +8,16 @@
 		L.esri.basemapLayer('Imagery').addTo(map);
 		L.esri.basemapLayer('ImageryTransportation').addTo(map);
 
-		//var currentQuery = "Status IN ('Current','S124 Expired/Exercised') and Type='Water Permit'";//SQL statement to limit results
+		
 		var innundationUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0';//url of feature service
-		var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_EvacuationZones/MapServer">Data from HBRC</a>'
-	//Overlay with an ESRI feature layer showing water take consents, radius 10 for mobile screens so easier to hit with big fingers.
-		//layer variable defined here, but populated with the esri layer after the listners so that the 
-		//styling functions and reset style works (see Leaflet tutorials for info).
+		var safeZonesUrl = "https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_TsunamiEvacuation__SafeLocations/MapServer/0"
+		
+		var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards">Data from HBRC</a>'
+	
 		
 		//var hbconsents; 
 		var innundationZones;
+		var safeZones;
 		
 		
 		//Add attribution for the feature layer
@@ -33,7 +34,7 @@
 			return this._div;
 			};
 		
-		//style function
+		//style functions
 		function innundationStyle(feature) {
 			return {
 				//radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
@@ -46,18 +47,37 @@
 				};
 			}
 	
+	
+	function safeStyle(feature) {
+			return {
+				radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
+				stroke: true,
+				color: '#00FF11',
+				weight:1,
+				opacity: 0.8,
+				fillColor: '#00FF11',	
+				fillOpacity: 0.8
+				};
+			}
 		
 	//create the feature layer after the event handlers so that the reset styles function works 
 	
 	innundationZones = L.esri.featureLayer({
 	
-			
 			url: innundationUrl,
 			//url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
 			style: innundationStyle,
 			}).addTo(map);  
 			
-			
+	safeZones = L.esri.featureLayer({
+	
+			url: safeZonesUrl,
+			//url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
+			pointToLayer: function (geojson, latlng) {return L.circleMarker(latlng, 
+				{}
+				);},
+			style: safeStyle,
+			}).addTo(map);  		
 	
 		
 		

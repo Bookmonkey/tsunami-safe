@@ -11,6 +11,8 @@ var userLocation = {
 var safeZoneData = [];
 var allZoneData = [];
 
+map.locate({setView: true, maxZoom: 16});
+
 loadJSON(function(response) {
   // Parse JSON string into object
     safeZoneData = JSON.parse(response);
@@ -34,7 +36,16 @@ lc = L.control.locate({
 })
 .addTo(map);
 
-//lc.start();
+lc.start();
+
+//gets current location and creates new route
+function newRouteFromLocation()
+{	//updates location
+	map.locate({setView: true, maxZoom: 16});
+	//new route
+	var route = findQuickestRoute(location);
+	createNewRoute(location, route);
+	}
 
 
 function onLocationFound(e){
@@ -42,8 +53,9 @@ function onLocationFound(e){
 		lat: e.latitude,
 		long: e.longitude
 	};
-	var route = findQuickestRoute(location);
-	createNewRoute(location, route);
+	//uncomment if findAndCreateRoute doesn't work
+	//var route = findQuickestRoute(location);
+//	createNewRoute(location, route);
 }
 
 
@@ -105,6 +117,7 @@ function createNewRoute(location, route){
 	    L.latLng(route.lat, route.long)
 	  ],
 	  router: L.Routing.graphHopper('2f1f160d-40d5-4c50-9625-40c20317d3b4'),
+	  
 	  lineOptions: {
 	      styles: [{color: '#2980b9', opacity: 1, weight: 5}],
 	      addWaypoints: true

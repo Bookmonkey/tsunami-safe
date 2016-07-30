@@ -92,7 +92,9 @@ safeZones = L.esri.featureLayer({
 		//	layer.bindPopup(feature.properties.LocationType, {closeButton: false});
 		//}
 	//}
-	}).addTo(map);  		
+	}).addTo(map); 
+	
+safeZones.bringToFront() 		
 
 //var hbconsents; 
 var innundationZones;

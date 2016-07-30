@@ -94,5 +94,7 @@ function createNewRoute(location, route){
 	}).addTo(map);
 }
 
+map.on("load", lc.start());
+
 map.on("locationerror", onLocationError);
 map.on("locationfound", onLocationFound);

@@ -1,3 +1,8 @@
+var userInformation = {
+	totalDistance: '',
+	totalTime: '',
+	instructions: '',
+};
 var userLocation = {
 	latitude: '',
 	longitude: '',
@@ -38,13 +43,26 @@ function onLocationFound(e){
 		long: e.longitude
 	};
 	var route = findQuickestRoute(location);
-
-
 	createNewRoute(location, route);
+}
+
+
+function routeFound(e){
+	console.log(e);
 }
 
 function onLocationError(e){
 	window.alert("Oops. Looks like you do not have your Location Services on!");
+}
+
+// Assigns the time and distance to html element called panel
+// The HTML element panel by default is hidden, so we need to show it. By adding a CSS class
+function displayUserInformationToDom(){
+	var panelTime = document.getElementById('panel-time-element').innerText = userInformation.totalTime;
+	var panelDistance = document.getElementById('panel-distance-element').innerText = userInformation.totalDistance;
+
+
+	document.getElementById('panel').className = "shown";
 }
 
 // Gets a value of 
@@ -81,16 +99,27 @@ function findQuickestRoute(location){
 }
 // Creates a new Route 
 function createNewRoute(location, route){
-	L.Routing.control({
+	var control = L.Routing.control({
 	    waypoints: [
 	    L.latLng(location.lat, location.long),
 	    L.latLng(route.lat, route.long)
 	  ],
 	  router: L.Routing.graphHopper('2f1f160d-40d5-4c50-9625-40c20317d3b4'),
 	  lineOptions: {
-	      styles: [{color: '#2980b9', opacity: 1, weight: 5}]
+	      styles: [{color: '#2980b9', opacity: 1, weight: 5}],
+	      addWaypoints: true
 	   },
+	   show:true,
 	   showAlternatives: true,
+	})
+	.on('routesfound', function(e) {
+	   	var formatter = new L.Routing.Formatter();
+
+    	userInformation.totalTime = formatter.formatTime(e.routes[0].summary.totalTime);
+    	userInformation.totalDistance = formatter.formatDistance(e.routes[0].summary.totalDistance);
+    	userInformation.instructions = e.routes[0].instructions;
+    	
+    	displayUserInformationToDom();
 	}).addTo(map);
 }
 

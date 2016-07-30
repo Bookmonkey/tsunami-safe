@@ -35,6 +35,7 @@
     
     
     <link rel="stylesheet" type="text/css" href="css/global.css"></link>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -48,6 +49,12 @@
 		<p>This map shows areas potentially affected by Tsunami, 
 		safe locations and shows the route to the closest safe location from your current position. </p>
 		<p></p>
+    </div>
+
+
+    <div id="panel" class="hidden">
+    	<p><strong>Time: </strong> <span id="panel-time-element"></span></p>
+    	<p><strong>Distance: </strong> <span id="panel-distance-element"></span></p>
     </div>
     
     <script type="text/javascript" src="js/leaflet-routing-machine.js"></script>

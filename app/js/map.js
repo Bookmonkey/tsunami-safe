@@ -1,4 +1,6 @@
 //Open a map container and centre in the Hawke's Bay at zoom 14
+console.log(safeZones);
+
 var map = L.map('map').setView([-39.504871, 176.903568], 14);
 		
 		var innundationUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0';//url of feature service

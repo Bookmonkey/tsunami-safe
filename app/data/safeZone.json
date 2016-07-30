@@ -1,4 +1,4 @@
-[{
+var safeZones = [{
     "type": "Feature",
     "properties": {"LocationType": "Safe Location"},
     "geometry": {

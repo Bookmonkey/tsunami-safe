@@ -11,7 +11,7 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-                    "Information": "Napier Girls High School"},
+					"Information": "Napier Girls High School"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
@@ -20,14 +20,67 @@
     }
 }, {
     "type": "Feature",
-    "properties": {
-        "LocationType": "Safe Location",
-        "Information": "Napier Girls High School"
-    },
+    "properties": {"LocationType": "Safe Location",
+					"Information": "EIT"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.523582, 176.863404]
+            [-39.546497, 176.840037]
         ]]
-    }
-}]
+    }, {
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Anderson Park"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.523582,176.863404]
+        ]]
+    }, {
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Hawke's Bay Sports Park"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.610543,176.836138]
+        ]]
+    }, {
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Bluff Hill Lookout"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.478904,176.917493]
+        ]]
+    }, {
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Napier Central School"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.489446,176.908803]
+        ]]
+    }, {
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Napier Botanical Gardens"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.490313,176.900801]
+        ]]
+    }, {
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Taradale High School"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.543369,176.851445]
+        ]]
+    }]
+
+

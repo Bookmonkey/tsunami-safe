@@ -4,14 +4,15 @@ var userLocation = {
 };
 
 var safeZoneData = [];
+var allZoneData = [];
 
 loadJSON(function(response) {
   // Parse JSON string into object
-    safeZoneData = JSON.parse(response);
+    allZoneData = JSON.parse(response);
     //filter the data so only direct to Safe Locations
-	//var safeZoneData = allZoneData.filter(function(i) {
-    //  return i.properties.LocationType === "Hazard";
-    //  });
+	safeZoneData = allZoneData.filter(function(i) {
+      return i.properties.LocationType === "Hazard";
+      });
     //console.log(allZoneData);
     //console.log(safeZoneData);
  });

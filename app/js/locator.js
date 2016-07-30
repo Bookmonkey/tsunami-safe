@@ -29,7 +29,7 @@ lc = L.control.locate({
 })
 .addTo(map);
 
-lc.start();
+//lc.start();
 
 
 function onLocationFound(e){

@@ -3,8 +3,14 @@ var userLocation = {
 	longitude: '',
 };
 
+var safeZoneData = [];
 
-console.log(safeZones);
+loadJSON(function(response) {
+  // Parse JSON string into object
+    safeZoneData = JSON.parse(response);
+
+    console.log(safeZoneData);
+ });
 
 //Location control and handler
 lc = L.control.locate({
@@ -21,14 +27,17 @@ lc.start();
 
 
 function onLocationFound(e){
-	createNewRoute(e.latitude, e.longitude);
 
-	console.log(safeZones);
+	findQuickestRoute();
+
+	createNewRoute(e.latitude, e.longitude);
 }
 
 function onLocationError(e){
 	window.alert("Oops. Looks like you do not have your Location Services on!");
 }
+
+function findQuicketRoute(){}
 
 // Creates a new Route 
 function createNewRoute(lat, long){
@@ -44,6 +53,8 @@ function createNewRoute(lat, long){
 	   showAlternatives: true,
 	}).addTo(map);
 }
+
+console.log(safeZones);
 
 map.on("locationerror", onLocationError);
 map.on("locationfound", onLocationFound);

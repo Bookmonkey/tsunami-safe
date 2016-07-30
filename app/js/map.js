@@ -1,34 +1,42 @@
-//Open a map container and centre in the Hawke's Bay at zoom 14
-console.log(safeZones);
+var safeZones = [];
 
+loadJSON(function(response) {
+  // Parse JSON string into object
+    safeZones = JSON.parse(response);
+
+    console.log(safeZones);
+ });
+
+
+//Open a map container and centre in the Hawke's Bay at zoom 14
 var map = L.map('map').setView([-39.504871, 176.903568], 14);
 		
-		var innundationUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0';//url of feature service
-		var safeZonesUrl = "https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_TsunamiEvacuation__SafeLocations/MapServer/0"
-		
-		var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards">Data from HBRC</a>'
-	
-		
-		//var hbconsents; 
-		var innundationZones;
-		var safeZones;
-		
-		
-		//Add attribution for the feature layer
-		map.attributionControl.addAttribution(credits);
+var innundationUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0';//url of feature service
+var safeZonesUrl = "https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_TsunamiEvacuation__SafeLocations/MapServer/0"
 
+var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards">Data from HBRC</a>'
+
+
+//var hbconsents; 
+var innundationZones;
+var safeZones;
+
+
+//Add attribution for the feature layer
+map.attributionControl.addAttribution(credits);
+
+
+
+//create a loading icon ready to display when content is loading
+var loading = L.control();
+
+loading.onAdd = function (map) {
+	this._div = L.DomUtil.create('div', 'loadicon');
+	this._div.innerHTML = '<i class="fa fa-spinner fa-2x fa-spin"></i>';
+	return this._div;
+};
 	
-		
-		//create a loading icon ready to display when content is loading
-		var loading = L.control();
-		
-		loading.onAdd = function (map) {
-			this._div = L.DomUtil.create('div', 'loadicon');
-			this._div.innerHTML = '<i class="fa fa-spinner fa-2x fa-spin"></i>';
-			return this._div;
-			};
-			
-		//Feature layer listner function
+//Feature layer listner function
 function onEachFeature(feature, layer) {
 	layer.on({
 		mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
@@ -127,12 +135,12 @@ innundationZones = L.esri.featureLayer({
 }).addTo(map);  
 	
 
-	//Stop following if the user drags the map
-	map.on('startfollowing', function() {
-		map.on('dragstart', lc._stopFollowing, lc);
-	}).on('stopfollowing', function() {
-		map.off('dragstart', lc._stopFollowing, lc);
-	});
+//Stop following if the user drags the map
+map.on('startfollowing', function() {
+	map.on('dragstart', lc._stopFollowing, lc);
+}).on('stopfollowing', function() {
+	map.off('dragstart', lc._stopFollowing, lc);
+});
 	
 function infoFeature(e) {
 	//console.log(e.target.feature);

@@ -16,11 +16,5 @@ Once you have installed the dependencies
 node app.js
 ```
 
-## Google Maps Api
-[This link](https://developers.google.com/maps/documentation/javascript/) 
-
-## Data Sources used
-TBA
-
 ## Demo 
-[Demo Link](http://tsunami-safe.herokuapp.com)
+[Demo Link](https://tsunami-safe.herokuapp.com)

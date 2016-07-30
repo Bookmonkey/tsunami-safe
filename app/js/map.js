@@ -121,19 +121,6 @@ innundationZones = L.esri.featureLayer({
 	//url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
 	style: innundationStyle,
 }).addTo(map);  
-		
-		
-//Location control and handler
-lc = L.control.locate({
-	follow: true,
-	icon: 'fa fa-map-marker',
-	keepCurrentZoomLevel: false,
-	strings: {
-		title: "Show me where I am"
-	},
-	locateOptions: {}
-}).addTo(map);
-		
 	
 
 	//Stop following if the user drags the map
@@ -143,28 +130,14 @@ lc = L.control.locate({
 		map.off('dragstart', lc._stopFollowing, lc);
 	});
 	
-	function infoFeature(e) {
-		//console.log(e.target.feature);
-		//hbconsents.resetStyle()//{fillColor: '#feb24c'});//reset all features to default colour
-		//hbconsents.setFeatureStyle(e.target.feature.id, {fillColor: '#ff0000'});//highlight selected feature
-		featureQuery(e.target._latlng);
-		}
+function infoFeature(e) {
+	//console.log(e.target.feature);
+	//hbconsents.resetStyle()//{fillColor: '#feb24c'});//reset all features to default colour
+	//hbconsents.setFeatureStyle(e.target.feature.id, {fillColor: '#ff0000'});//highlight selected feature
+	featureQuery(e.target._latlng);
+}
 
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-
-
-L.Routing.control({
-    waypoints: [
-    L.latLng(-39.504871, 176.903568),
-    L.latLng(-39.6365764,176.7493582)
-  ],
-  router: L.Routing.graphHopper('2f1f160d-40d5-4c50-9625-40c20317d3b4'),
-  lineOptions: {
-      styles: [{color: '#2980b9', opacity: 1, weight: 5}]
-   },
-}).addTo(map);
-
-var map = L.map('map');

@@ -44,9 +44,9 @@ function onLocationError(e){
 function pythagoras(location){
 	var array = [];
 	for(var i = 0; i < safeZoneData.length; i++){
-		var coords = safeZoneData[i].geometry.coordinates[0][0];
-		var a = location.lat - coords[0];
-		var b = location.long - coords[1];
+		var coords = safeZoneData[i].geometry.coordinates;
+		var a = location.lat - coords[1];
+		var b = location.long - coords[0];
 		var c = Math.sqrt( a*a + b*b );
 
 		array.push({

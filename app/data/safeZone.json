@@ -4,9 +4,7 @@
 					"Information": "Old Napier Hospital"},
     "geometry": {
         "type": "Point",
-        "coordinates": [[
-            [-39.488814, 176.900419]
-        ]]
+        "coordinates": [176.900419, -39.488814]
     }
 }, {
     "type": "Feature",
@@ -14,9 +12,7 @@
 					"Information": "Napier Girls High School"},
     "geometry": {
         "type": "Point",
-        "coordinates": [[
-            [-39.485411, 176.914495]
-        ]]
+        "coordinates": [176.914495, -39.485411]
     }
 }, {
     "type": "Feature",
@@ -25,62 +21,67 @@
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.546497, 176.840037]
+            [176.840037, -39.546497]
         ]]
-    }, {
+    }
+}, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
 					"Information": "Anderson Park"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.523582,176.863404]
+            [176.863404, -39.523582]
         ]]
-    }, {
+    }
+}, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
 					"Information": "Hawke's Bay Sports Park"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.610543,176.836138]
+            [176.836138, -39.610543]
         ]]
-    }, {
+    }
+}, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
 					"Information": "Bluff Hill Lookout"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.478904,176.917493]
+            [176.917493, -39.478904]
         ]]
-    }, {
+    }
+}, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
 					"Information": "Napier Central School"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.489446,176.908803]
+            [176.908803, -39.489446]
         ]]
-    }, {
+    }
+}, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
 					"Information": "Napier Botanical Gardens"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.490313,176.900801]
+            [176.900801, -39.490313]
         ]]
-    }, {
+    }
+}, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
 					"Information": "Taradale High School"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
-            [-39.543369,176.851445]
+            [176.851445, -39.543369]
         ]]
-    }]
-
-
+    }
+}]

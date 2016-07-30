@@ -85,11 +85,20 @@ innundationZones = L.esri.featureLayer({
 
 }).addTo(map);  
 
-var test = safeZones[0];
+var geojsonFeature = {
+    "type": "Feature",
+    "properties": {
+        "name": "Coors Field",
+        "amenity": "Baseball Stadium",
+        "popupContent": "This is where the Rockies play!"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [176.914495, -39.485411]
+    }
+};
 
-console.log(test);
-
-L.geoJson(test).addTo(map);
+L.geoJson(geojsonFeature).addTo(map);
 
 safeZonePoints = L.geoJson(safeZones, {
 	
@@ -123,7 +132,7 @@ safeZonesMahanga = L.esri.featureLayer({
 	//}
 	}).addTo(map); 
 	
-safeZonePoints.bringToFront() 		
+safeZonePoints.bringToFront();
 
 //var hbconsents; 
 //var innundationZones;

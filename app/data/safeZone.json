@@ -27,12 +27,12 @@
     }
 }, {
     "type": "Feature",
-    "properties": {"LocationType": "Safe Location",
-					"Information": "Anderson Park"},
+    "properties": {"LocationType": "Hazard",
+					"Information": "Possible Rockfall"},
     "geometry": {
         "type": "Point",
         "coordinates":
-            [176.863404, -39.523582]
+            [176.920922, -39.482034]
     }
 }, {
     "type": "Feature",

@@ -1,0 +1,19 @@
+[{
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.488814, 176.900419]
+        ]]
+    }
+}, {
+    "type": "Feature",
+    "properties": {"LocationType": "Safe Location"},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.485411, 176.914495]
+        ]]
+    }
+}];

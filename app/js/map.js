@@ -33,6 +33,15 @@
 			this._div.innerHTML = '<i class="fa fa-spinner fa-2x fa-spin"></i>';
 			return this._div;
 			};
+			
+		//Feature layer listner function
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
+			//mouseout: resetHighlight,
+			click: layer.bindPopup(feature.properties.LocationType, {closeButton: false})
+			});
+		}
 		
 		//style functions
 		function innundationStyle(feature) {
@@ -47,15 +56,19 @@
 				};
 			}
 	
+	function getColor(type) {
+			return type == "Safe Location" ? '#00FF11' :
+					type == "Do Not Cross Stream"  ? '#FF0000' :
+								'#FFA500';}
 	
 	function safeStyle(feature) {
 			return {
 				radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
 				stroke: true,
-				color: '#00FF11',
+				color: '#E6E6FA',
 				weight:1,
 				opacity: 0.8,
-				fillColor: '#00FF11',	
+				fillColor: getColor(feature.properties.LocationType),	
 				fillOpacity: 0.8
 				};
 			}
@@ -66,17 +79,27 @@
 	
 			url: innundationUrl,
 			//url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
-			style: innundationStyle,
+			style: innundationStyle
+			
 			}).addTo(map);  
 			
 	safeZones = L.esri.featureLayer({
 	
 			url: safeZonesUrl,
 			//url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
+			
 			pointToLayer: function (geojson, latlng) {return L.circleMarker(latlng, 
 				{}
 				);},
+			//where: "LocationType = 'Safe Location'",
 			style: safeStyle,
+			onEachFeature: onEachFeature
+			
+			//function(feature, layer) {
+				//if (feature.properties && feature.properties.LocationType) {
+				//	layer.bindPopup(feature.properties.LocationType, {closeButton: false});
+				//}
+			//}
 			}).addTo(map);  		
 	
 		
@@ -103,3 +126,10 @@
 	}).on('stopfollowing', function() {
 		map.off('dragstart', lc._stopFollowing, lc);
 	});
+	
+	function infoFeature(e) {
+		//console.log(e.target.feature);
+		//hbconsents.resetStyle()//{fillColor: '#feb24c'});//reset all features to default colour
+		//hbconsents.setFeatureStyle(e.target.feature.id, {fillColor: '#ff0000'});//highlight selected feature
+		featureQuery(e.target._latlng);
+		}

@@ -41,6 +41,7 @@ function onLocationError(e){
 	window.alert("Oops. Looks like you do not have your Location Services on!");
 }
 
+// Gets a value of 
 function pythagoras(location){
 	var array = [];
 	for(var i = 0; i < safeZoneData.length; i++){
@@ -51,14 +52,14 @@ function pythagoras(location){
 
 		array.push({
 			point: c,
-			lat: coords[0],
-			long: coords[1]
+			lat: coords[1],
+			long: coords[0]
 		});
 	}
-	console.log(array);
 	return array;
 }
 
+// Return the object with the lowest point in the points array
 function findQuickestRoute(location){
 	var points = pythagoras(location);
 

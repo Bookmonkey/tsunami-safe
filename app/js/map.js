@@ -1,15 +1,15 @@
 var safeZones = [];
+//Open a map container and centre in the Hawke's Bay at zoom 14
+var map = L.map('map').setView([-39.504871, 176.903568], 14);
 
 loadJSON(function(response) {
   // Parse JSON string into object
     safeZones = JSON.parse(response);
 
-    console.log(safeZones[1]);
+    addSafeZones(safeZones);
  });
 
 
-//Open a map container and centre in the Hawke's Bay at zoom 14
-var map = L.map('map').setView([-39.504871, 176.903568], 14);
 		
 var innundationUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0';//url of feature service
 var safeZonesUrl = "https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_TsunamiEvacuation__SafeLocations/MapServer/0"
@@ -19,7 +19,6 @@ var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Haz
 
 //var hbconsents; 
 var innundationZones;
-var safeZonePoints;
 
 
 //Add attribution for the feature layer
@@ -84,34 +83,6 @@ innundationZones = L.esri.featureLayer({
 	style: innundationStyle
 
 }).addTo(map);  
-
-var geojsonFeature = {
-    "type": "Feature",
-    "properties": {
-        "name": "Coors Field",
-        "amenity": "Baseball Stadium",
-        "popupContent": "This is where the Rockies play!"
-    },
-    "geometry": {
-        "type": "Point",
-        "coordinates": [176.914495, -39.485411]
-    }
-};
-
-L.geoJson(geojsonFeature).addTo(map);
-
-safeZonePoints = L.geoJson(safeZones, {
-	
-	//pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, safeStyle(feature)
-	//	);}
-	//onEachFeature: onEachFeature
-	
-	//function(feature, layer) {
-		//if (feature.properties && feature.properties.LocationType) {
-		//	layer.bindPopup(feature.properties.LocationType, {closeButton: false});
-		//}
-	//}
-	}).addTo(map); 
 			
 safeZonesMahanga = L.esri.featureLayer({
 
@@ -131,8 +102,7 @@ safeZonesMahanga = L.esri.featureLayer({
 		//}
 	//}
 	}).addTo(map); 
-	
-safeZonePoints.bringToFront();
+
 
 //var hbconsents; 
 //var innundationZones;
@@ -182,3 +152,14 @@ function infoFeature(e) {
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+
+
+function addSafeZones(data){
+ 	L.geoJson(data, {
+	
+	pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, safeStyle(feature)
+		);}
+	}).bringToFront()
+	.addTo(map);
+}

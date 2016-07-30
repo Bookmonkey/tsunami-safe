@@ -11,11 +11,23 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "Napier Girls High School"},
+                    "Information": "Napier Girls High School"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
             [-39.485411, 176.914495]
+        ]]
+    }
+}, {
+    "type": "Feature",
+    "properties": {
+        "LocationType": "Safe Location",
+        "Information": "Napier Girls High School"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [[
+            [-39.523582, 176.863404]
         ]]
     }
 }]

@@ -4,7 +4,7 @@ loadJSON(function(response) {
   // Parse JSON string into object
     safeZones = JSON.parse(response);
 
-    console.log(safeZones);
+    console.log(safeZones[1]);
  });
 
 
@@ -19,7 +19,7 @@ var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Haz
 
 //var hbconsents; 
 var innundationZones;
-var safeZones;
+var safeZonePoints;
 
 
 //Add attribution for the feature layer
@@ -84,8 +84,27 @@ innundationZones = L.esri.featureLayer({
 	style: innundationStyle
 
 }).addTo(map);  
+
+var test = safeZones[0];
+
+console.log(test);
+
+L.geoJson(test).addTo(map);
+
+safeZonePoints = L.geoJson(safeZones, {
+	
+	//pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, safeStyle(feature)
+	//	);}
+	//onEachFeature: onEachFeature
+	
+	//function(feature, layer) {
+		//if (feature.properties && feature.properties.LocationType) {
+		//	layer.bindPopup(feature.properties.LocationType, {closeButton: false});
+		//}
+	//}
+	}).addTo(map); 
 			
-safeZones = L.esri.featureLayer({
+safeZonesMahanga = L.esri.featureLayer({
 
 	url: safeZonesUrl,
 	//url: 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0'
@@ -104,10 +123,11 @@ safeZones = L.esri.featureLayer({
 	//}
 	}).addTo(map); 
 	
-safeZones.bringToFront() 		
+safeZonePoints.bringToFront() 		
 
 //var hbconsents; 
-var innundationZones;
+//var innundationZones;
+//var safeZonePoints;
 
 //Add attribution for the feature layer
 map.attributionControl.addAttribution(credits);

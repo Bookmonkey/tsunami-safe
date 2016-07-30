@@ -12,7 +12,8 @@ loadJSON(function(response) {
 	var safeZoneData = allZoneData.filter(function(i) {
       return i.properties.LocationType === "Hazard";
       });
-    console.log(wantedData);
+    //console.log(allZoneData);
+    //console.log(safeZoneData);
  });
 
 //Location control and handler
@@ -26,6 +27,7 @@ lc = L.control.locate({
 	locateOptions: {}
 })
 .addTo(map);
+
 lc.start();
 
 

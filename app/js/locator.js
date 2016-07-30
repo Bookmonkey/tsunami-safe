@@ -1,7 +1,10 @@
 var userLocation = {
 	latitude: '',
 	longitude: '',
-}
+};
+
+
+console.log(safeZones);
 
 //Location control and handler
 lc = L.control.locate({
@@ -14,10 +17,17 @@ lc = L.control.locate({
 	locateOptions: {}
 })
 .addTo(map);
+lc.start();
 
 
 function onLocationFound(e){
 	createNewRoute(e.latitude, e.longitude);
+
+	console.log(safeZones);
+}
+
+function onLocationError(e){
+	window.alert("Oops. Looks like you do not have your Location Services on!");
 }
 
 // Creates a new Route 
@@ -25,7 +35,7 @@ function createNewRoute(lat, long){
 	L.Routing.control({
 	    waypoints: [
 	    L.latLng(lat, long),
-	    L.latLng(-39.4789755,176.7282936)
+	    L.latLng(-39.4928232,176.911848)
 	  ],
 	  router: L.Routing.graphHopper('2f1f160d-40d5-4c50-9625-40c20317d3b4'),
 	  lineOptions: {
@@ -35,4 +45,5 @@ function createNewRoute(lat, long){
 	}).addTo(map);
 }
 
+map.on("locationerror", onLocationError);
 map.on("locationfound", onLocationFound);

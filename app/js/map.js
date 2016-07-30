@@ -135,7 +135,7 @@ var infoIcon = L.Control.extend({
 			options: {position: 'topright'},
 			onAdd: function(map) {
 				var helpContainer = L.DomUtil.create('div', 'infoIcon');
-				helpContainer.innerHTML = '<a href="helpPage.html"><i>?</i></a>';
+				helpContainer.innerHTML = '<a href="helpPage.html" target="_blank"><i>?</i></a>';
 				helpContainer.title = "Show Help";
 				//container.onclick = newRouteFromLocation();
 				return helpContainer;
@@ -144,15 +144,4 @@ var infoIcon = L.Control.extend({
 		map.addControl(new infoIcon());
 
 
-//Add button to call routing function
-var routingIcon = L.Control.extend({
-			options: {position: 'topleft'},
-			onAdd: function(map) {
-				var container = L.DomUtil.create('div', 'routingIcon');
-				container.innerHTML = '<i class="fa fa-car"></i>';
-				container.title = "Show Route";
-				//container.onclick = findAndCreateRoute();
-				return container;
-				},
-			});
-		map.addControl(new routingIcon());
+

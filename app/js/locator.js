@@ -24,6 +24,10 @@ loadJSON(function(response) {
     //console.log(safeZoneData);
  });
 
+
+
+
+
 //Location control and handler
 lc = L.control.locate({
 	follow: true,
@@ -38,10 +42,11 @@ lc = L.control.locate({
 
 lc.start();
 
+
 //gets current location and creates new route
 function newRouteFromLocation()
 {	//updates location
-	map.locate({setView: true, maxZoom: 16});
+	//map.locate({setView: true, maxZoom: 16});
 	//new route
 	var route = findQuickestRoute(location);
 	createNewRoute(location, route);
@@ -135,6 +140,18 @@ function createNewRoute(location, route){
     	displayUserInformationToDom();
 	}).addTo(map);
 }
+
+var routingIcon = L.Control.extend({
+			options: {position: 'topleft'},
+			onAdd: function(map) {
+				var container = L.DomUtil.create('div', 'routingIcon');
+				container.innerHTML = '<i class="fa fa-car"></i>';
+				container.title = "Show Route";
+				//container.onclick = newRouteFromLocation();
+				return container;
+				},
+			});
+		map.addControl(new routingIcon());
 
 map.on("load", lc.start());
 

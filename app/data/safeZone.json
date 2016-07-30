@@ -1,6 +1,7 @@
 var safeZones = [{
     "type": "Feature",
-    "properties": {"LocationType": "Safe Location"},
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Old Napier Hospital"},
     "geometry": {
         "type": "Point",
         "coordinates": [[
@@ -9,7 +10,8 @@ var safeZones = [{
     }
 }, {
     "type": "Feature",
-    "properties": {"LocationType": "Safe Location"},
+    "properties": {"LocationType": "Safe Location",
+					"Information": "Napier Girls High School"},
     "geometry": {
         "type": "Point",
         "coordinates": [[

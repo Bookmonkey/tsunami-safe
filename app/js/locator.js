@@ -7,9 +7,12 @@ var safeZoneData = [];
 
 loadJSON(function(response) {
   // Parse JSON string into object
-    safeZoneData = JSON.parse(response);
-
-    console.log(safeZoneData);
+    allZoneData = JSON.parse(response);
+    //filter the data so only direct to Safe Locations
+	var safeZoneData = allZoneData.filter(function(i) {
+      return i.properties.LocationType === "Hazard";
+      });
+    console.log(wantedData);
  });
 
 //Location control and handler

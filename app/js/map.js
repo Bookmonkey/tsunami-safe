@@ -41,9 +41,9 @@ loading.onAdd = function (map) {
 //Feature layer listner function
 function onEachFeature(feature, layer) {
 	layer.on({
-		mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
+		//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
 		//mouseout: resetHighlight,
-		click: layer.bindPopup(feature.properties.LocationType, {closeButton: false})
+		click: layer.bindPopup('<b>' + feature.properties.LocationType + '</b><br>' + feature.properties.Information, {closeButton: false})
 		});
 	}
 

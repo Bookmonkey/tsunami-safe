@@ -39,3 +39,9 @@ html, body {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }
+
+p {
+	 margin-top: 0em;
+  margin-bottom: 2em;
+}
+

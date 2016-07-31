@@ -129,7 +129,7 @@ function addSafeZones(data){
 
 //Add button to call help page
 var infoIcon = L.Control.extend({
-			options: {position: 'topright'},
+			options: {position: 'topleft'},
 			onAdd: function(map) {
 				var helpContainer = L.DomUtil.create('div', 'infoIcon');
 				helpContainer.innerHTML = '<a href="helpPage.html" target="_blank"><i>?</i></a>';

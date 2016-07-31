@@ -139,7 +139,7 @@ var routingIcon = L.Control.extend({
 				var container = L.DomUtil.create('div', 'routingIcon');
 				container.innerHTML = '<i class="fa fa-car"></i>';
 				container.title = "Show Route";
-				container.onclick = newRouteFromLocation();
+				container.title = "Route Estimation for Cars";
 				return container;
 				},
 			});

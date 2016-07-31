@@ -29,6 +29,16 @@ loadJSON(function(response) {
 function newRouteFromLocation()
 {	//updates location
 	//map.locate({setView: true, maxZoom: 16});
+	if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
 	//new route
 	var route = findQuickestRoute(location);
 	createNewRoute(location, route);
@@ -129,7 +139,7 @@ var routingIcon = L.Control.extend({
 				var container = L.DomUtil.create('div', 'routingIcon');
 				container.innerHTML = '<i class="fa fa-car"></i>';
 				container.title = "Show Route";
-				//container.onclick = newRouteFromLocation();
+				container.onclick = newRouteFromLocation();
 				return container;
 				},
 			});

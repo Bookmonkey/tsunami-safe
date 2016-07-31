@@ -3,6 +3,7 @@
 <head>
 <meta charset = "UTF-8">
 <title> Tsunami-Safe Help Page</title>
+<link rel="icon" href="0IconFinal.png"/>
 <style type="text/css">
 h1 {font-family: arial;
 	color: black;
@@ -13,30 +14,77 @@ h1 {font-family: arial;
 p  {font-family: arial;
 	color: black;
 	font-size: 16pt;
-	text-align: center;
+	text-align: left;
 	}
 	
 .info	{
 		 margin: auto;
+		 width: 70%;
+		 max-width: 700px;
+		 border-style: solid;
+		 background-color: white;
 		 }
-		 
 
+.list	{
+			margin:auto;
+			width: 70%;
+			max-width: 700px;
+			border-style: solid;
+			background-color: white;
+		}
+
+.container	{
+			border-style: solid;
+			width: 100%;
+			background-color: grey;
+			max-width: 800px;
+			margin: auto;
+			
+			}
+
+.image		{width: 70%;
+			 max-width: 700px;
+			 border-style: solid;
+			 background-color: white;
+			 }
+			 
+.image img  {width: 70%;
+			 max-width: 70%;
+			 }
 </style>
 </head>
 			
 <body>
 
-<h1> Tsunami-Safe Help Page </h1>
+<div class="container">
 
-<div class="info">
-<p> Tsunami-Safe is a web-app that uses your current location to plot the fastest route to a civil defence safe zone.
-In order for this to work, you must have a gps enabled device, and you must have allowed your web browser to use your gps location.
-For more information on enabling gps services on your device, please consult your device manual or manufacturer's website.
-</p>
+	<h1> Tsunami-Safe Help Page </h1>
+
+
+
+	<div class="info">
+		<p> Tsunami-Safe is a web-app that uses your current location to plot the fastest route to a civil defence safe zone.
+		In order for this to work, you must have a gps enabled device, and you must have allowed your web browser to use your gps location.
+		For more information on enabling gps services on your device, please consult your device manual or manufacturer's website.
+		</p>
+
+		<p> On the map there are several things one must take note of: </p>
+
+	</div>
+	
+	<div class="list">
+		<ul>
+			<li>The blue dot in the blue circle is your current approximate position</li>
+			<li>The blue line represents the fastest route to the nearest safe zone</li>
+			<li>The red area is the area that should be avoided at all costs in the event of a tsunami</li>
+		</ul>
+	</div>
+	
+	<center>
+		<div class="image">
+			<img src="0IconFinal.png"/>
+		</div>
+	</center>
 </div>
-	
-	
-	
-	
 	
 </html>

@@ -124,11 +124,8 @@ function createNewRoute(location, route){
 	  router: L.Routing.graphHopper('2f1f160d-40d5-4c50-9625-40c20317d3b4'),
 	  
 	  lineOptions: {
-	      styles: [{color: '#2980b9', opacity: 1, weight: 5}],
-	      addWaypoints: true
-	   },
-	   show:true,
-	   showAlternatives: true,
+	      styles: [{color: '#2980b9', opacity: 1, weight: 5}]
+	  }
 	})
 	.on('routesfound', function(e) {
 	   	var formatter = new L.Routing.Formatter();

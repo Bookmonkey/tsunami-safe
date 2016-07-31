@@ -1,11 +1,13 @@
 var safeZones = [];
 //Open a map container and centre in Napier at zoom 14
-var map = L.map('map').fitBounds([
+var map = L.map('map').setView([-39.504871, 176.903568], 14);
+
+map.setMaxBounds([
     [-40.455503, 176.550088],
     [-38.938249, 178.088174]
 ]);
 
-map.setView([-39.504871, 176.903568], 14)
+
 
 
 loadJSON(function(response) {

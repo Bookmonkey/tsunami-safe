@@ -41,20 +41,18 @@ loading.onAdd = function (map) {
 	return this._div;
 };
 	
-//Feature layer listner function
+//Safe Zone layer listner function
 function onEachFeature(feature, layer) {
 	layer.on({
-		//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
-		//mouseout: resetHighlight,
+		
 		click: layer.bindPopup('<b>' + feature.properties.LocationType + '</b><br>' + feature.properties.Location +'</b><br>' + feature.properties.Information, {closeButton: false})
 		});
 	}
 	
-//Feature layer listner function
+//Innundation layer listner function
 function infoFeature(feature, layer) {
 	layer.on({
-		//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
-		//mouseout: resetHighlight,
+		
 		click: layer.bindPopup('<b>Warning</b><br>Risk of Tsunami innundation.<br>Move to higher ground.', {closeButton: false})
 		});
 	}
@@ -62,7 +60,6 @@ function infoFeature(feature, layer) {
 //style functions
 function innundationStyle(feature) {
 	return {
-		//radius: 10,//can use circleSize(map), but needs to be refreshed on zoom
 		stroke: true,
 		color: '#d7191c',
 		weight:1,
@@ -91,18 +88,12 @@ function safeStyle(feature) {
 }
 		
 	//create the feature layers  
-	
+	//Innundation zones
 innundationZones = L.esri.featureLayer({
 
 	url: innundationUrl,
 	style: innundationStyle,
 	onEachFeature: infoFeature
-		
-			//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
-			//mouseout: resetHighlight,
-	//		click: layer.bindPopup('<b>Warning</b><br>Potential tsunami innundation zone', {closeButton: true})
-			
-		//}
 
 }).addTo(map);  
 
@@ -117,13 +108,6 @@ safeZonesMahanga = L.esri.featureLayer({
 	onEachFeature: onEachFeature
 	
 	}).addTo(map); 
-
-
-
-//Add attribution for the feature layer
-//map.attributionControl.addAttribution(credits);
-
-		
 	
 
 //Stop following if the user drags the map
@@ -139,7 +123,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-
+//Add Napier safe zones from a json file
 
 function addSafeZones(data){
  	L.geoJson(data, {

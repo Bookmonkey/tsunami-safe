@@ -25,24 +25,6 @@ loadJSON(function(response) {
  });
 
 
-
-
-
-//Location control and handler
-lc = L.control.locate({
-	follow: true,
-	icon: 'fa fa-map-marker',
-	keepCurrentZoomLevel: false,
-	strings: {
-		title: "Show me where I am"
-	},
-	locateOptions: {}
-})
-.addTo(map);
-
-lc.start();
-
-
 //gets current location and creates new route
 function newRouteFromLocation()
 {	//updates location
@@ -52,15 +34,18 @@ function newRouteFromLocation()
 	createNewRoute(location, route);
 	}
 
-
+var marker = L.circleMarker([176.9093535, -39.49311]).addTo(map);
 function onLocationFound(e){
 	var location = {
 		lat: e.latitude,
 		long: e.longitude
 	};
+
+	marker.setLatLng([location.lat, location.long]);
+
 	//uncomment if findAndCreateRoute doesn't work
-	//var route = findQuickestRoute(location);
-//	createNewRoute(location, route);
+	var route = findQuickestRoute(location);
+	createNewRoute(location, route);
 }
 
 
@@ -150,7 +135,7 @@ var routingIcon = L.Control.extend({
 			});
 		map.addControl(new routingIcon());
 
-map.on("load", lc.start());
+// map.on("load", lc.start());
 
 map.on("locationerror", onLocationError);
 map.on("locationfound", onLocationFound);

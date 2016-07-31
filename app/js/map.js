@@ -112,15 +112,6 @@ safeZonesMahanga = L.esri.featureLayer({
 	
 	}).addTo(map); 
 
-
-//Stop following if the user drags the map
-map.on('startfollowing', function() {
-	map.on('dragstart', lc._stopFollowing, lc);
-}).on('stopfollowing', function() {
-	map.off('dragstart', lc._stopFollowing, lc);
-});
-	
-
 //Bring in the Open Street Map basemap
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

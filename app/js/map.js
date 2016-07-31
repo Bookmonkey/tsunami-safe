@@ -43,7 +43,7 @@ function onEachFeature(feature, layer) {
 	layer.on({
 		//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
 		//mouseout: resetHighlight,
-		click: layer.bindPopup('<b>' + feature.properties.LocationType + '</b><br>' + feature.properties.Information, {closeButton: false})
+		click: layer.bindPopup('<b>' + feature.properties.LocationType + '</b><br>' + feature.properties.Location +'</b><br>' + feature.properties.Information, {closeButton: false})
 		});
 	}
 

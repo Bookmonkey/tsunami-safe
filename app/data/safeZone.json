@@ -1,16 +1,8 @@
 [{
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "Old Napier Hospital"},
-    "geometry": {
-        "type": "Point",
-        "coordinates":
-            [176.900419, -39.488814]
-    }
-}, {
-    "type": "Feature",
-    "properties": {"LocationType": "Safe Location",
-					"Information": "Napier Girls High School"},
+					"Location": "Napier Girls High School",
+					"Information": "Some shelter, toilets and eating areas."},
     "geometry": {
         "type": "Point",
         "coordinates":
@@ -19,7 +11,8 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "EIT"},
+					"Location": "EIT",
+					"Information": "Some shelter, toilets and eating areas."},
     "geometry": {
         "type": "Point",
         "coordinates":
@@ -28,6 +21,7 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Hazard",
+					"Location": "Breakwater Road",
 					"Information": "Possible Rockfall"},
     "geometry": {
         "type": "Point",
@@ -37,7 +31,8 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "Hawke's Bay Sports Park"},
+					"Location": "Hawke's Bay Sports Park",
+					"Information": "Some shelter, toilets and large grassed area."},
     "geometry": {
         "type": "Point",
         "coordinates":
@@ -46,7 +41,8 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "Bluff Hill Lookout"},
+					"Location": "Bluff Hill Lookout",
+					"Information": "No shelter, no toilets and small grassed area."},
     "geometry": {
         "type": "Point",
         "coordinates":
@@ -55,7 +51,8 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "Napier Central School"},
+					"Location": "Napier Central School",
+					"Information": "Some shelter, toilets and eating areas."},
     "geometry": {
         "type": "Point",
         "coordinates":
@@ -64,7 +61,8 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "Napier Botanical Gardens"},
+					"Location": "Napier Botanical Gardens",
+					"Information": "No shelter, no toilets and small grassed area."},
     "geometry": {
         "type": "Point",
         "coordinates":
@@ -73,7 +71,8 @@
 }, {
     "type": "Feature",
     "properties": {"LocationType": "Safe Location",
-					"Information": "Taradale High School"},
+					"Location": "Taradale High School",
+					"Information": "Some shelter, toilets and eating areas."},
     "geometry": {
         "type": "Point",
         "coordinates":

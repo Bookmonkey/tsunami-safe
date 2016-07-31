@@ -1,6 +1,12 @@
 var safeZones = [];
 //Open a map container and centre in Napier at zoom 14
-var map = L.map('map').setView([-39.504871, 176.903568], 14);
+var map = L.map('map').fitBounds([
+    [-40.455503, 176.550088],
+    [-38.938249, 178.088174]
+]);
+
+map.setView([-39.504871, 176.903568], 14)
+
 
 loadJSON(function(response) {
   // Parse JSON string of safeZones and hazards into object
@@ -8,10 +14,7 @@ loadJSON(function(response) {
 
     addSafeZones(safeZones);
  });
- 
-//var imported = document.createElement('script');
-//imported.src = 'js/locator.js';
-//document.head.appendChild(imported);
+
 
 // Bring in the layers from Hawke's Bay Regional Council.
 		
@@ -44,6 +47,15 @@ function onEachFeature(feature, layer) {
 		//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
 		//mouseout: resetHighlight,
 		click: layer.bindPopup('<b>' + feature.properties.LocationType + '</b><br>' + feature.properties.Location +'</b><br>' + feature.properties.Information, {closeButton: false})
+		});
+	}
+	
+//Feature layer listner function
+function infoFeature(feature, layer) {
+	layer.on({
+		//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
+		//mouseout: resetHighlight,
+		click: layer.bindPopup('<b>Warning</b><br>Risk of Tsunami innundation.<br>Move to higher ground.', {closeButton: false})
 		});
 	}
 
@@ -83,7 +95,14 @@ function safeStyle(feature) {
 innundationZones = L.esri.featureLayer({
 
 	url: innundationUrl,
-	style: innundationStyle
+	style: innundationStyle,
+	onEachFeature: infoFeature
+		
+			//mouseover: layer.bindPopup(feature.properties.LocationType, {closeButton: false}),
+			//mouseout: resetHighlight,
+	//		click: layer.bindPopup('<b>Warning</b><br>Potential tsunami innundation zone', {closeButton: true})
+			
+		//}
 
 }).addTo(map);  
 
@@ -137,7 +156,6 @@ var infoIcon = L.Control.extend({
 				var helpContainer = L.DomUtil.create('div', 'infoIcon');
 				helpContainer.innerHTML = '<a href="helpPage.html" target="_blank"><i>?</i></a>';
 				helpContainer.title = "Show Help";
-				//container.onclick = newRouteFromLocation();
 				return helpContainer;
 				},
 			});

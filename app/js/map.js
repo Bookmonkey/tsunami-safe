@@ -21,6 +21,7 @@ loadJSON(function(response) {
 var innundationUrl = 'https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_Tsunami_NearSource_InundationExtent/MapServer/0';//url of feature service
 var safeZonesUrl = "https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards/HawkesBay_TsunamiEvacuation__SafeLocations/MapServer/0"
 
+
 var credits = '<a href="https://hbrcwebmap.hbrc.govt.nz/arcgis/rest/services/Hazards">Data from HBRC</a>'
 
 
@@ -108,7 +109,7 @@ safeZonesMahanga = L.esri.featureLayer({
 	onEachFeature: onEachFeature
 	
 	}).addTo(map); 
-	
+
 
 //Stop following if the user drags the map
 map.on('startfollowing', function() {
